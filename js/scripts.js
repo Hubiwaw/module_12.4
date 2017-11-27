@@ -12,9 +12,10 @@ function getJoke() {
 	xhr.open("GET", url);
 	xhr.addEventListener("load", function(){
 		var response = JSON.parse(xhr.response);
+		if(!response.value || !response.value.joke) {
+			return; 
+		}
 		paragraph.innerHTML = response.value.joke;
 	});
 	xhr.send();
 }
-
-var response = JSON.parse(xhr.response);
